@@ -124,6 +124,115 @@ def categorize(title: str, summary: str) -> str:
     return "GENERAL"
 
 
+# ── Highlights ranking ────────────────────────────────────────────────────────
+
+# Base score per category (higher = more important)
+_CATEGORY_SCORE: dict[str, int] = {
+    "NEW DEALS":          30,
+    "FUNDRAISING":        30,
+    "EXITS":              25,
+    "VALUATIONS":         20,
+    "MARKET/REGULATORY":  15,
+    "MEDIA RIGHTS":       15,
+    "PEOPLE":             10,
+    "GENERAL":             0,
+}
+
+# Patterns that signal a high-value story; each match adds to the score
+_SIGNAL_BOOSTS: list[tuple[str, int]] = [
+    # Deal / fund size with a dollar figure
+    (r"\$\s*\d+(?:\.\d+)?\s*(?:b(?:illion)?|bn)",   50),  # $Xbn / $X billion
+    (r"\$\s*\d+(?:\.\d+)?\s*(?:m(?:illion)?|mn)",   20),  # $Xm / $X million
+    # Landmark fund events
+    (r"hard cap",                                     25),
+    (r"fund close|final close|closes? on",            25),
+    (r"debut fund|inaugural fund|first fund",         20),
+    # Deal specifics
+    (r"majority stake|controlling stake",             20),
+    (r"acqui(?:res?|sition)|buyout",                  15),
+    (r"ipo|going public",                             20),
+    # Senior people moves at well-known firms
+    (r"(?:ceo|cfo|coo|managing partner|founding partner)"
+     r".{0,30}(?:join|appoint|hire|depart|leave|name)",   15),
+]
+
+
+def rank_article(article: dict, category: str) -> int:
+    """Return a numeric priority score — higher is more important."""
+    text  = (article.get("title", "") + " " + article.get("summary", "")).lower()
+    score = _CATEGORY_SCORE.get(category, 0)
+    for pattern, boost in _SIGNAL_BOOSTS:
+        if re.search(pattern, text, re.I):
+            score += boost
+    # Perplexity articles tend to cover more substantive sources — small bonus
+    if article.get("layer") == "perplexity":
+        score += 5
+    return score
+
+
+def pick_highlights(
+    fund_sections: list[dict],
+    max_highlights: int = 8,
+    min_highlights: int = 5,
+) -> list[dict]:
+    """
+    Scan every article across all fund sections and return the top stories.
+
+    Returns a list of dicts: {fund_name, title, url, category, score}
+    sorted descending by score, capped at max_highlights.
+    """
+    candidates: list[dict] = []
+
+    for section in fund_sections:
+        fund_name    = section["name"]
+        cat_articles = section["category_articles"]
+
+        for category, articles in cat_articles.items():
+            for article in articles:
+                score = rank_article(article, category)
+                if score <= 0:
+                    continue
+                candidates.append(
+                    {
+                        "fund_name": fund_name,
+                        "title":     article.get("title", "").strip(),
+                        "url":       article.get("url", "#"),
+                        "category":  category,
+                        "score":     score,
+                    }
+                )
+
+    # Sort by score descending, then deduplicate by URL
+    candidates.sort(key=lambda x: x["score"], reverse=True)
+    seen_urls:   set[str] = set()
+    seen_titles: set[str] = set()
+    highlights:  list[dict] = []
+
+    for c in candidates:
+        norm_title = re.sub(r"\W+", " ", c["title"].lower()).strip()
+        if c["url"] in seen_urls or norm_title in seen_titles:
+            continue
+        seen_urls.add(c["url"])
+        seen_titles.add(norm_title)
+        highlights.append(c)
+        if len(highlights) == max_highlights:
+            break
+
+    # If we're below the minimum, top up with next-best regardless of score
+    if len(highlights) < min_highlights:
+        for c in candidates:
+            if len(highlights) >= min_highlights:
+                break
+            norm_title = re.sub(r"\W+", " ", c["title"].lower()).strip()
+            if c["url"] in seen_urls or norm_title in seen_titles:
+                continue
+            seen_urls.add(c["url"])
+            seen_titles.add(norm_title)
+            highlights.append(c)
+
+    return highlights
+
+
 def dedup(articles: list[dict]) -> list[dict]:
     seen_urls: set[str] = set()
     seen_titles: set[str] = set()
@@ -545,8 +654,56 @@ def build_html(
     fund_sections: list[dict],
     new_fund_names: list[str],
     all_funds: list[dict],
+    highlights: list[dict] | None = None,
 ) -> str:
     """Render the complete HTML email."""
+
+    # ── HIGHLIGHTS section ─────────────────────────────────────────────────
+    highlights_html = ""
+    if highlights:
+        # Priority label per category (short, fits on one line)
+        cat_label: dict[str, str] = {
+            "NEW DEALS":          "DEAL",
+            "FUNDRAISING":        "FUNDRAISING",
+            "EXITS":              "EXIT",
+            "PEOPLE":             "PEOPLE",
+            "MARKET/REGULATORY":  "REGULATORY",
+            "VALUATIONS":         "VALUATION",
+            "MEDIA RIGHTS":       "MEDIA RIGHTS",
+            "GENERAL":            "NEWS",
+        }
+        rows = ""
+        for h in highlights:
+            fund   = h["fund_name"].replace("<", "&lt;").replace(">", "&gt;")
+            title  = h["title"].replace("<", "&lt;").replace(">", "&gt;")
+            url    = h["url"]
+            clabel = cat_label.get(h["category"], h["category"])
+            clr    = CATEGORY_COLORS.get(h["category"], "#555555")
+            rows += f"""
+<tr>
+  <td style="padding:0 0 12px;vertical-align:top;width:12px;
+             color:#c9a84c;font-size:14px;line-height:1.5;">&#9679;</td>
+  <td style="padding:0 0 12px 8px;vertical-align:top;">
+    <span style="background:{clr};color:#fff;font-size:9px;font-weight:700;
+                 padding:2px 6px;border-radius:3px;letter-spacing:0.5px;
+                 margin-right:7px;vertical-align:middle;">{clabel}</span>
+    <strong style="color:#ffffff;font-size:13px;font-weight:800;">{fund}</strong>
+    <span style="color:#aaaaaa;font-size:13px;"> &mdash; </span>
+    <a href="{url}"
+       style="color:#dddddd;font-size:13px;text-decoration:none;line-height:1.5;">{title}</a>
+  </td>
+</tr>"""
+
+        highlights_html = f"""
+<table width="100%" cellpadding="0" cellspacing="0"
+       style="background:#1a1a2e;border-radius:8px;border-left:4px solid #c9a84c;
+              margin-bottom:20px;">
+  <tr><td style="padding:22px 24px 10px 24px;">
+    <div style="color:#c9a84c;font-size:13px;font-weight:800;letter-spacing:0.3px;
+                margin-bottom:16px;">&#128273; This Week&#39;s Highlights</div>
+    <table width="100%" cellpadding="0" cellspacing="0">{rows}</table>
+  </td></tr>
+</table>"""
 
     # ── NEW THIS WEEK banner ───────────────────────────────────────────────
     new_banner = ""
@@ -689,6 +846,7 @@ def build_html(
 
   <!-- BODY -->
   <tr><td style="background:#0f0f0f;padding:28px 32px;">
+    {highlights_html}
     {new_banner}
     {sections_html}
   </td></tr>
@@ -805,8 +963,12 @@ def main() -> None:
     else:
         log.info("No new funds detected this week")
 
-    # 5. Build HTML and send
-    html    = build_html(week_of, fund_sections, new_fund_names, funds)
+    # 5. Pick highlights from all collected news
+    highlights = pick_highlights(fund_sections)
+    log.info("Selected %d highlight(s) for summary section", len(highlights))
+
+    # 6. Build HTML and send
+    html    = build_html(week_of, fund_sections, new_fund_names, funds, highlights)
     subject = f"\u26bd Sports Fund Intel \u2014 Week of {week_of}"
 
     log.info("Sending digest: %s", subject)
