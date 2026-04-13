@@ -499,14 +499,14 @@ def detect_new_funds(existing_names: set[str]) -> list[dict]:
 # ── HTML email builder ────────────────────────────────────────────────────────
 
 CATEGORY_COLORS: dict[str, str] = {
-    "NEW DEALS":          "#22c55e",
-    "FUNDRAISING":        "#3b82f6",
-    "EXITS":              "#f97316",
-    "PEOPLE":             "#a855f7",
-    "MARKET/REGULATORY":  "#ef4444",
-    "VALUATIONS":         "#eab308",
-    "MEDIA RIGHTS":       "#06b6d4",
-    "GENERAL":            "#6b7280",
+    "NEW DEALS":          "#1a7a3a",
+    "FUNDRAISING":        "#1a4a7a",
+    "EXITS":              "#7a1a1a",
+    "PEOPLE":             "#5a1a7a",
+    "MARKET/REGULATORY":  "#7a4a1a",
+    "VALUATIONS":         "#1a6a6a",
+    "MEDIA RIGHTS":       "#7a6a1a",
+    "GENERAL":            "#555555",
 }
 
 LAYER_LABELS: dict[str, str] = {
@@ -557,9 +557,9 @@ def build_html(
         )
         new_banner = f"""
 <table width="100%" cellpadding="0" cellspacing="0"
-       style="background:#1e3a5f;border-left:4px solid #3b82f6;border-radius:4px;margin-bottom:24px;">
+       style="background:#1a1a1a;border-left:4px solid #c9a84c;border-radius:4px;margin-bottom:24px;">
   <tr><td style="padding:16px 20px;">
-    <div style="color:#93c5fd;font-size:10px;font-weight:700;letter-spacing:1.5px;
+    <div style="color:#c9a84c;font-size:10px;font-weight:700;letter-spacing:1.5px;
                 margin-bottom:10px;">&#9733; NEW FUNDS DETECTED THIS WEEK</div>
     <table cellpadding="0" cellspacing="0">{items}</table>
   </td></tr>
@@ -578,36 +578,45 @@ def build_html(
         for cat in cats_used:
             arts = cat_articles[cat][:5]   # cap at 5 per category per fund
             items_html += (
-                f'<tr><td style="padding:12px 0 4px;">'
-                f'<div style="color:#94a3b8;font-size:10px;font-weight:700;'
-                f'letter-spacing:1.2px;margin-bottom:6px;">{cat}</div></td></tr>'
+                f'<tr><td style="padding:14px 0 4px;">'
+                f'<div style="color:#888888;font-size:10px;font-weight:700;'
+                f'letter-spacing:1.4px;margin-bottom:8px;">{cat}</div></td></tr>'
             )
-            for a in arts:
+            for i, a in enumerate(arts):
                 title  = a.get("title", "").replace("<", "&lt;").replace(">", "&gt;")
                 url    = a.get("url", "#")
                 src    = a.get("source", "").replace("<", "&lt;").replace(">", "&gt;")
                 layer  = a.get("layer", "")
                 dot    = _layer_dot(layer)
-                items_html += f"""
-<tr><td style="padding:0 0 10px 12px;border-left:2px solid #1e3a5f;">
+                # Divider between items (not before the first)
+                divider = (
+                    '<tr><td style="padding:0 0 8px 16px;border-left:1px solid #2a2a2a;">'
+                    '<div style="border-top:1px solid #2a2a2a;margin-bottom:8px;"></div>'
+                    '</td></tr>'
+                    if i > 0 else ""
+                )
+                items_html += f"""{divider}
+<tr><td style="padding:0 0 10px 16px;border-left:1px solid #2a2a2a;">
   <a href="{url}"
-     style="color:#e2e8f0;text-decoration:none;font-size:13px;line-height:1.5;
-            font-weight:500;">{title}</a>
-  <div style="margin-top:3px;">
+     style="color:#ffffff;text-decoration:none;font-size:13px;line-height:1.6;
+            font-weight:600;">{title}</a>
+  <div style="margin-top:4px;">
     {dot}
-    <span style="color:#64748b;font-size:11px;margin-left:6px;">— {src}</span>
+    <span style="color:#c9a84c;font-size:11px;font-weight:500;margin-left:6px;">{src}</span>
   </div>
 </td></tr>"""
 
         sections_html += f"""
 <table width="100%" cellpadding="0" cellspacing="0"
-       style="background:#1a2744;border-radius:8px;margin-bottom:14px;">
-  <tr><td style="padding:20px 24px;">
+       style="background:#1a1a1a;border-radius:8px;border-left:4px solid #c9a84c;
+              margin-bottom:14px;">
+  <tr><td style="padding:22px 24px 18px 24px;">
     <table width="100%" cellpadding="0" cellspacing="0">
       <tr>
-        <td style="padding-bottom:10px;">
-          <span style="color:#f1f5f9;font-size:16px;font-weight:700;">{fund_name}</span>
-          <div style="margin-top:6px;">{cat_badges_html}</div>
+        <td style="padding-bottom:12px;">
+          <span style="color:#ffffff;font-size:18px;font-weight:800;
+                       letter-spacing:-0.2px;">{fund_name}</span>
+          <div style="margin-top:8px;">{cat_badges_html}</div>
         </td>
       </tr>
       {items_html}
@@ -630,13 +639,13 @@ def build_html(
     for grp, names in sorted(fund_groups.items()):
         grp_label = grp.replace("_", " ").title()
         name_cells = "".join(
-            f'<span style="color:#94a3b8;font-size:11px;">{n}</span>'
-            f'<span style="color:#334155;">&nbsp;&bull;&nbsp;</span>'
+            f'<span style="color:#888888;font-size:11px;">{n}</span>'
+            f'<span style="color:#333333;">&nbsp;&bull;&nbsp;</span>'
             for n in sorted(names)
         )
         footer_rows += f"""
 <tr><td style="padding:0 0 12px;">
-  <div style="color:#475569;font-size:9px;font-weight:700;letter-spacing:1.5px;
+  <div style="color:#555555;font-size:9px;font-weight:700;letter-spacing:1.5px;
               margin-bottom:4px;">{grp_label}</div>
   <div style="line-height:1.8;">{name_cells}</div>
 </td></tr>"""
@@ -657,41 +666,42 @@ def build_html(
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sports Fund Intel — Week of {week_of}</title>
 </head>
-<body style="margin:0;padding:0;background:#0f172a;
+<body style="margin:0;padding:0;background:#0f0f0f;
              font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
 
 <table width="100%" cellpadding="0" cellspacing="0"
-       style="background:#0f172a;padding:32px 16px;">
+       style="background:#0f0f0f;padding:32px 16px;">
 <tr><td>
 <table width="640" align="center" cellpadding="0" cellspacing="0"
        style="max-width:640px;width:100%;margin:0 auto;">
 
   <!-- HEADER -->
-  <tr><td style="background:#0f3460;border-radius:12px 12px 0 0;padding:32px 32px 24px;">
-    <div style="color:#3b82f6;font-size:10px;font-weight:700;letter-spacing:2px;
-                margin-bottom:8px;">WEEKLY INTELLIGENCE DIGEST</div>
-    <div style="color:#f1f5f9;font-size:28px;font-weight:800;margin-bottom:4px;">
+  <tr><td style="background:#0f3460;border-radius:12px 12px 0 0;padding:44px 40px 36px;">
+    <div style="color:#c9a84c;font-size:10px;font-weight:700;letter-spacing:3px;
+                margin-bottom:12px;">WEEKLY INTELLIGENCE DIGEST</div>
+    <div style="color:#ffffff;font-size:34px;font-weight:800;
+                letter-spacing:-0.5px;line-height:1.1;margin-bottom:8px;">
       &#9917; Sports Fund Intel
     </div>
-    <div style="color:#94a3b8;font-size:14px;">Week of {week_of}</div>
-    <div style="margin-top:12px;">{legend}</div>
+    <div style="color:#94a3b8;font-size:15px;margin-bottom:16px;">Week of {week_of}</div>
+    <div style="border-top:1px solid #1e3a5f;padding-top:14px;">{legend}</div>
   </td></tr>
 
   <!-- BODY -->
-  <tr><td style="background:#0f172a;padding:24px 32px;">
+  <tr><td style="background:#0f0f0f;padding:28px 32px;">
     {new_banner}
     {sections_html}
   </td></tr>
 
   <!-- FOOTER -->
-  <tr><td style="background:#0d1b2a;border-radius:0 0 12px 12px;
-                  padding:24px 32px;border-top:1px solid #1e293b;">
-    <div style="color:#475569;font-size:9px;font-weight:700;letter-spacing:2px;
+  <tr><td style="background:#111111;border-radius:0 0 12px 12px;
+                  padding:24px 32px;border-top:1px solid #222222;">
+    <div style="color:#555555;font-size:9px;font-weight:700;letter-spacing:2px;
                 margin-bottom:16px;">TRACKED UNIVERSE &mdash; {total} FUNDS</div>
     <table width="100%" cellpadding="0" cellspacing="0">{footer_rows}</table>
     <table width="100%" cellpadding="0" cellspacing="0"
-           style="border-top:1px solid #1e293b;margin-top:16px;">
-      <tr><td style="padding-top:14px;color:#334155;font-size:11px;">
+           style="border-top:1px solid #222222;margin-top:16px;">
+      <tr><td style="padding-top:14px;color:#444444;font-size:11px;">
         Generated automatically every Monday 7&nbsp;AM&nbsp;ET via GitHub Actions.
         Sources: NewsAPI &bull; RSS &bull; Perplexity Sonar.
       </td></tr>
