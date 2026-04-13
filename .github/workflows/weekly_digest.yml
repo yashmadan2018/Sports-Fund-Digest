@@ -1,0 +1,48 @@
+name: Weekly Sports Fund Digest
+
+on:
+  schedule:
+    - cron: '0 12 * * 1'   # Monday 12:00 UTC = 07:00 AM ET
+  workflow_dispatch:        # manual trigger for testing
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # needed to commit funds.json updates back to repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run digest
+        env:
+          NEWSAPI_KEY:        ${{ secrets.NEWSAPI_KEY }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+          GMAIL_ADDRESS:      ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL:    ${{ secrets.RECIPIENT_EMAIL }}
+        run: python digest.py
+
+      - name: Commit updated funds.json
+        run: |
+          git config user.name  "Sports Fund Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add funds.json
+          if git diff --staged --quiet; then
+            echo "funds.json unchanged — nothing to commit"
+          else
+            git commit -m "chore: auto-update funds.json [skip ci]"
+            git push
+          fi
