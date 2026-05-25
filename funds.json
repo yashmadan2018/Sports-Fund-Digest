@@ -3,247 +3,401 @@
     {
       "name": "Arctos Partners",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Arctos Partners", "Arctos Sports"],
+      "keywords": [
+        "Arctos Partners",
+        "Arctos Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Dyal HomeCourt Partners",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Dyal HomeCourt", "HomeCourt Partners"],
+      "keywords": [
+        "Dyal HomeCourt",
+        "HomeCourt Partners"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "RedBird Capital Partners",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["RedBird Capital", "RedBird Sports"],
+      "keywords": [
+        "RedBird Capital",
+        "RedBird Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Sixth Street Partners",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Sixth Street Partners", "Sixth Street Sports"],
+      "keywords": [
+        "Sixth Street Partners",
+        "Sixth Street Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Dynasty Equity Partners",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Dynasty Equity Partners", "Dynasty Equity Sports"],
+      "keywords": [
+        "Dynasty Equity Partners",
+        "Dynasty Equity Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "MSP Sports Capital",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["MSP Sports Capital", "MSP Sports"],
+      "keywords": [
+        "MSP Sports Capital",
+        "MSP Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Elysian Park Ventures",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Elysian Park Ventures", "Elysian Park Sports"],
+      "keywords": [
+        "Elysian Park Ventures",
+        "Elysian Park Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "154 Partners",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["154 Partners"],
+      "keywords": [
+        "154 Partners"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Otro Capital",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Otro Capital", "Otro Sports"],
+      "keywords": [
+        "Otro Capital",
+        "Otro Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Synergy Sports Capital",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Synergy Sports Capital", "Synergy Sports"],
+      "keywords": [
+        "Synergy Sports Capital",
+        "Synergy Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Ludis Capital",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Ludis Capital"],
+      "keywords": [
+        "Ludis Capital"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Avenue Capital Group",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["Avenue Capital Group", "Avenue Capital Sports"],
+      "keywords": [
+        "Avenue Capital Group",
+        "Avenue Capital Sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "RSE Ventures",
       "category": "DEDICATED_SPORTS_FIRST_US",
-      "keywords": ["RSE Ventures"],
+      "keywords": [
+        "RSE Ventures"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Apollo Sports Capital",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Apollo Sports Capital", "Apollo Global sports fund", "Apollo sports"],
+      "keywords": [
+        "Apollo Sports Capital",
+        "Apollo Global sports fund",
+        "Apollo sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Ares Management (Sports)",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Ares Management sports", "Ares sports fund", "Ares sports"],
+      "keywords": [
+        "Ares Management sports",
+        "Ares sports fund",
+        "Ares sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Blackstone (Sports)",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Blackstone sports", "Blackstone sports fund", "Blackstone sports investment"],
+      "keywords": [
+        "Blackstone sports",
+        "Blackstone sports fund",
+        "Blackstone sports investment"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Carlyle Group (Sports)",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Carlyle Group sports", "Carlyle sports fund", "Carlyle sports investment"],
+      "keywords": [
+        "Carlyle Group sports",
+        "Carlyle sports fund",
+        "Carlyle sports investment"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "KKR (Sports)",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["KKR sports", "KKR sports fund", "KKR sports investment"],
+      "keywords": [
+        "KKR sports",
+        "KKR sports fund",
+        "KKR sports investment"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "TPG Capital (Sports)",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["TPG Capital sports", "TPG sports fund", "TPG sports"],
+      "keywords": [
+        "TPG Capital sports",
+        "TPG sports fund",
+        "TPG sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Shamrock Capital",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Shamrock Capital", "Shamrock Capital sports"],
+      "keywords": [
+        "Shamrock Capital",
+        "Shamrock Capital sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Bruin Capital",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Bruin Capital", "Bruin Sports Capital"],
+      "keywords": [
+        "Bruin Capital",
+        "Bruin Sports Capital"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Clearlake Capital",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Clearlake Capital", "Clearlake sports"],
+      "keywords": [
+        "Clearlake Capital",
+        "Clearlake sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Elliott Management (Sports)",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Elliott Management sports", "Elliott sports investment"],
+      "keywords": [
+        "Elliott Management sports",
+        "Elliott sports investment"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Oaktree Capital (Sports)",
       "category": "LARGE_CAP_SPORTS_VEHICLE",
-      "keywords": ["Oaktree Capital sports", "Oaktree sports fund", "Oaktree sports"],
+      "keywords": [
+        "Oaktree Capital sports",
+        "Oaktree sports fund",
+        "Oaktree sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "CVC Capital Partners (Global Sport Group)",
       "category": "EU_INTERNATIONAL",
-      "keywords": ["CVC Capital Partners sports", "CVC Global Sport Group", "CVC sports"],
+      "keywords": [
+        "CVC Capital Partners sports",
+        "CVC Global Sport Group",
+        "CVC sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Silver Lake (Sports)",
       "category": "EU_INTERNATIONAL",
-      "keywords": ["Silver Lake sports", "Silver Lake sports fund", "Silver Lake sports investment"],
+      "keywords": [
+        "Silver Lake sports",
+        "Silver Lake sports fund",
+        "Silver Lake sports investment"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Bridgepoint (Sports)",
       "category": "EU_INTERNATIONAL",
-      "keywords": ["Bridgepoint sports", "Bridgepoint sports fund"],
+      "keywords": [
+        "Bridgepoint sports",
+        "Bridgepoint sports fund"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "777 Partners",
       "category": "EU_INTERNATIONAL",
-      "keywords": ["777 Partners", "777 Partners sports"],
+      "keywords": [
+        "777 Partners",
+        "777 Partners sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Fenway Sports Group",
       "category": "SPORTS_ADJACENT",
-      "keywords": ["Fenway Sports Group", "FSG sports investment"],
+      "keywords": [
+        "Fenway Sports Group",
+        "FSG sports investment"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Harris Blitzer Sports & Entertainment",
       "category": "SPORTS_ADJACENT",
-      "keywords": ["Harris Blitzer Sports", "HBSE", "Harris Blitzer Entertainment"],
+      "keywords": [
+        "Harris Blitzer Sports",
+        "HBSE",
+        "Harris Blitzer Entertainment"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Atairos",
       "category": "SPORTS_ADJACENT",
-      "keywords": ["Atairos", "Atairos sports"],
+      "keywords": [
+        "Atairos",
+        "Atairos sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Causeway Media Partners",
       "category": "SPORTS_ADJACENT",
-      "keywords": ["Causeway Media Partners", "Causeway Media sports"],
+      "keywords": [
+        "Causeway Media Partners",
+        "Causeway Media sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "The Chernin Group",
       "category": "SPORTS_ADJACENT",
-      "keywords": ["The Chernin Group", "Chernin Group sports", "Chernin sports"],
+      "keywords": [
+        "The Chernin Group",
+        "Chernin Group sports",
+        "Chernin sports"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "MARI (Ari Emanuel)",
       "category": "SPORTS_ADJACENT",
-      "keywords": ["MARI sports", "Ari Emanuel sports fund", "Ari Emanuel MARI"],
+      "keywords": [
+        "MARI sports",
+        "Ari Emanuel sports fund",
+        "Ari Emanuel MARI"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
     },
     {
       "name": "Bolt Ventures",
       "category": "SPORTS_ADJACENT",
-      "keywords": ["Bolt Ventures sports", "Bolt Ventures"],
+      "keywords": [
+        "Bolt Ventures sports",
+        "Bolt Ventures"
+      ],
       "date_added": "2026-01-01",
       "auto_detected": false
+    },
+    {
+      "name": "EUROSPAR Ireland Launch",
+      "category": "AUTO_DETECTED",
+      "keywords": [
+        "EUROSPAR Ireland Launch"
+      ],
+      "date_added": "2026-05-25",
+      "auto_detected": true,
+      "source_article": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQZ2p1VWlMY3RTNm53ejlUQTVKNWlmdEpmRXI2cDRXcXdHVDFkcWk5MTVfNlhJT0ROeHB4YUp4MG43aGxsWEZLTDg3eXhkeWxBemZaZzc1M29XOHlfSG1VN3RGbkFwS0swNTNSY1ltRUJMeFNTMWM2eDZsY0dYVlZaMmlxZHhNVVFkMHhkMkhwNWRlYzd0OE4yUlNoT2xkOTQ?oc=5"
+    },
+    {
+      "name": "Community Sports Fund",
+      "category": "AUTO_DETECTED",
+      "keywords": [
+        "Community Sports Fund"
+      ],
+      "date_added": "2026-05-25",
+      "auto_detected": true,
+      "source_article": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQZ2p1VWlMY3RTNm53ejlUQTVKNWlmdEpmRXI2cDRXcXdHVDFkcWk5MTVfNlhJT0ROeHB4YUp4MG43aGxsWEZLTDg3eXhkeWxBemZaZzc1M29XOHlfSG1VN3RGbkFwS0swNTNSY1ltRUJMeFNTMWM2eDZsY0dYVlZaMmlxZHhNVVFkMHhkMkhwNWRlYzd0OE4yUlNoT2xkOTQ?oc=5"
+    },
+    {
+      "name": "SPAR International SPAR",
+      "category": "AUTO_DETECTED",
+      "keywords": [
+        "SPAR International SPAR"
+      ],
+      "date_added": "2026-05-25",
+      "auto_detected": true,
+      "source_article": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQZ2p1VWlMY3RTNm53ejlUQTVKNWlmdEpmRXI2cDRXcXdHVDFkcWk5MTVfNlhJT0ROeHB4YUp4MG43aGxsWEZLTDg3eXhkeWxBemZaZzc1M29XOHlfSG1VN3RGbkFwS0swNTNSY1ltRUJMeFNTMWM2eDZsY0dYVlZaMmlxZHhNVVFkMHhkMkhwNWRlYzd0OE4yUlNoT2xkOTQ?oc=5"
+    },
+    {
+      "name": "Community Sports Fund \u00a0\u00a0 SPAR International",
+      "category": "AUTO_DETECTED",
+      "keywords": [
+        "Community Sports Fund \u00a0\u00a0 SPAR International"
+      ],
+      "date_added": "2026-05-25",
+      "auto_detected": true,
+      "source_article": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQZ2p1VWlMY3RTNm53ejlUQTVKNWlmdEpmRXI2cDRXcXdHVDFkcWk5MTVfNlhJT0ROeHB4YUp4MG43aGxsWEZLTDg3eXhkeWxBemZaZzc1M29XOHlfSG1VN3RGbkFwS0swNTNSY1ltRUJMeFNTMWM2eDZsY0dYVlZaMmlxZHhNVVFkMHhkMkhwNWRlYzd0OE4yUlNoT2xkOTQ?oc=5"
     }
   ]
 }
